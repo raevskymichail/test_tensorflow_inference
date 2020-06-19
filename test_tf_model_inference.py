@@ -8,7 +8,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 
-def test_inference_time(model, device='Intel(R) Xeon(R) CPU E5-2620 v4 @ 2.10GHz', n_samples_list=[1, 50, 100, 150, 200], n_rounds=10):
+def test_inference_time(model, input_data, device='Intel(R) Xeon(R) CPU E5-2620 v4 @ 2.10GHz', n_samples_list=[1, 50, 100, 150, 200], n_rounds=10):
     results = pd.DataFrame(columns=['inference_time', 'n_samples'])
     for n_samples in n_samples_list:
         time_n_samples = np.array([])
@@ -26,12 +26,12 @@ def test_inference_time(model, device='Intel(R) Xeon(R) CPU E5-2620 v4 @ 2.10GHz
     return results
 
 
-def test_inference_time_on_n_threads(model, n_treads_list=[1, 4, 8, 16, 32]):
+def test_inference_time_on_n_threads(model, input_data, n_treads_list=[1, 4, 8, 16, 32]):
     results = pd.DataFrame()
     for n_treads in n_treads_list:
         tf.config.threading.set_intra_op_parallelism_threads(n_treads)
         tf.config.threading.set_inter_op_parallelism_threads(n_treads)
-        results_n_threads = test_inference_time(model)
+        results_n_threads = test_inference_time(model, input_data)
         results_n_threads['n_treads'] = n_treads
         results = results.append(results_n_threads)
     return results
