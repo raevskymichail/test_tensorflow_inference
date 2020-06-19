@@ -53,16 +53,16 @@ def plot_inference_results(results, title, save_path=None):
         plt.savefig(save_path)
     plt.show()
 
-# Process the inference
+# # Process the inference
 
-with np.load('input_data.npz') as f:
-    input_data = f['data']
+# with np.load('input_data.npz') as f:
+#     input_data = f['data']
 
-model_best = tf.keras.models.load_model('model_best.hdf5')
-model_last = tf.keras.models.load_model('model_last.hdf5')
+# model_best = tf.keras.models.load_model('model_best.hdf5')
+# model_last = tf.keras.models.load_model('model_last.hdf5')
 
-results_model_best = test_inference_time_on_n_threads(model_best)
+# results_model_best = test_inference_time_on_n_threads(model_best)
 
-plot_inference_results(results_model_best,
-                       title='ResNet on Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz 2.00GHz',
-                       save_path='data/resnet_inference_laptop.svg')
+# plot_inference_results(results_model_best,
+#                        title='ResNet on Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz 2.00GHz',
+#                        save_path='data/resnet_inference_laptop.svg')
