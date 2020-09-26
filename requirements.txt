@@ -1,6 +1,6 @@
 Keras==2.2.5
 numpy==1.18.3
 setuptools==41.0.0
-tensorflow==1.15.2
+tensorflow==1.15.4
 scikit_learn==0.23.1
 utils==1.0.1
